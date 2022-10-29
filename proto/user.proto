@@ -1,0 +1,32 @@
+syntax = "proto3";
+
+package user;
+
+message SignInRequest {
+  string email = 1;
+  string password = 2;
+}
+
+message SignUpRequest {
+  string username = 1;
+  string email = 2;
+  string password = 3;
+}
+
+message SignInResponse {
+  string accessToken = 1;
+}
+
+message ValidateRequest {
+  string id = 1;
+}
+
+message ValidateResponse {
+  bool isValid = 1;
+}
+
+service UserService {
+  rpc SignIn (SignInRequest) returns (SignInResponse) {};
+  rpc SignUp (SignUpRequest) returns (SignInResponse) {};
+  rpc Validate (ValidateRequest) returns (ValidateResponse);
+}
